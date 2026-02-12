@@ -12,6 +12,7 @@ const userController = {
             res.status(500).json( { error: 'Database error'});
         }
     },
+    // POST createUser
     createUser: async (req, res) => {
         const { name, email } = req.body;
         if (!name || !email){
