@@ -8,14 +8,15 @@ const User = {
         }
         return rows;
     },
-    create: async function(name, email) {
-        const sql = 'INSERT INTO users (name, email) VALUES (?, ?)';
-        const [result] = await db.query(sql, [name, email]);
-        return result.insertId;
+    create: async function(name, email, password) {
+        const sql = 'INSERT INTO users (name, email, password) VALUES (?, ?, ?)';
+        const [result] = await db.query(sql, [name, email, password]);
+        console.log("Result: ", result);
+        return result;
     },
-    findById: async function(id) {
-        const sql = 'SELECT * FROM users WHERE id = ?';
-        const [rows] = await db.query(sql, [id]);
+    findByEmail: async function(email) {
+        const sql = 'SELECT * FROM users WHERE email = ?';
+        const [rows] = await db.query(sql, [email]);
         return rows[0];
     }
 };
